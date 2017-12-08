@@ -1,2 +1,6 @@
-# technical-interview-1
-Simple million user page with user edit feature.
+- generated angular 5 projects with CLI
+- generated users and user components with CLI
+- generated Api Service and UserService with CLI
+- customized code in services
+- added routing to the project with --routing option.
+- created app-navbar component 
