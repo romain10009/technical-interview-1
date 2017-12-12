@@ -64,6 +64,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
       res.body = _.find(this.users, {id: id});
     }
 
-    return Observable.of(new HttpResponse(res)).pipe(delay(800)); //end request here.
+    return Observable.of(new HttpResponse(res)).pipe(delay((req.method === 'GET' ? 800 : 0)); //end request here.
+
   }
 }

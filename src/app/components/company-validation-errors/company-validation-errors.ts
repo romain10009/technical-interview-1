@@ -3,7 +3,8 @@ import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'company-validation-errors',
-  templateUrl: 'company-validation-errors.html'
+  templateUrl: 'company-validation-errors.html',
+  styleUrls: ['company-validation-errors.scss']
 })
 export class CompanyValidationErrorsComponent {
 

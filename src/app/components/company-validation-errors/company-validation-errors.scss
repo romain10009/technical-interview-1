@@ -1,15 +1,20 @@
-company-validation-errors {
-  .error-message:first-child{
-    display: initial !important;
-  }
+.validation-errors{
+  padding-bottom: 3rem;
+}
 
-  .error-message{
-    display: none !important;
-    font-size: 1.5rem;
-    text-align: left;
-    margin-left: 16px;
-    position: absolute;
-    margin-top: 0.1rem;
-    color: map_get($colors,'primary');
-  }
+.error-message:first-child{
+  display: initial !important;
+}
+
+.error-message{
+  /*position: absolute;
+  top: 3px;*/
+  display: none !important;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  text-align: left;
+  margin-left: 16px;
+  position: absolute;
+  margin-top: 0.1rem;
+  color: #ff6664;
 }

@@ -7,8 +7,9 @@
 
   <div *ngIf="editMode; else userNice">
     <form  novalidate [formGroup]="userForm" (ngSubmit)="saveUser(userForm)">
+      <label for="company-user-name">Name :</label>
       <div class="input-group">
-        <input type="text" formControlName="name"
+        <input type="text" id="company-user-name" formControlName="name"
                class="form-control" placeholder="Username"
                aria-label="User's Username">
       </div>
@@ -29,8 +30,6 @@
         <button class="btn btn-lg btn-danger" role="button" (click)="stopEdit()">Cancel</button>
       </div>
     </form>
-
-
   </div>
 
   <ng-template #userNice>
