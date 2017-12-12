@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {UsersComponent} from "./users/users.component";
 import {UserComponent} from "./user/user.component";
 import {HomeComponent} from "./home/home.component";
+import {DiscardEditGuard} from "./guards/DiscardEditGuard";
+import {UserEditComponent} from "./user/user-edit/user-edit.component";
 
 const routes: Routes = [
   {
@@ -15,7 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'user/:id',
-    component: UserComponent
+    component: UserComponent,
+  },
+  {
+    path: 'user/:id/edit',
+    component: UserEditComponent,
+    canDeactivate: [DiscardEditGuard],
   },
   {
     path: '**',

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {state, transition, trigger, animate, style} from "@angular/animations";
 
 @Component({
@@ -16,6 +16,7 @@ import {state, transition, trigger, animate, style} from "@angular/animations";
       )]
 })
 export class CompanyLoaderComponent implements OnInit {
+  @Input() what : string;
 
   constructor() { }
 

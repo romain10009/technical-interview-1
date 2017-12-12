@@ -1,0 +1,33 @@
+<div *ngIf="user | async; let user;">
+  <h2>
+    Editing user {{user.name}}
+  </h2>
+  <br>
+  <br>
+
+    <form  novalidate [formGroup]="userForm" (ngSubmit)="saveUser(userForm)">
+      <label for="company-user-name">Name :</label>
+      <div class="input-group">
+        <input type="text" id="company-user-name" formControlName="name"
+               class="form-control" placeholder="Username"
+               aria-label="User's Username">
+      </div>
+      <company-validation-errors
+        [form]="userForm"
+        [fieldName]="'name'"
+        [validationMessages]="validation_messages">
+      </company-validation-errors>
+      <br>
+      <div class="buttons">
+        <button
+          [disabled]="!userForm.valid || !userForm.dirty"
+          type="submit"
+          class="btn btn-lg btn-success"
+          role="button">Save</button>
+        &nbsp;
+        &nbsp;
+        <div class="btn btn-lg btn-danger" role="button" routerLink="../">Cancel</div>
+      </div>
+    </form>
+</div>
+<company-loader *ngIf="!(user | async)" [what]="'user'"></company-loader>

@@ -1,52 +1,22 @@
 <div *ngIf="user | async; let user;">
   <h2>
-    {{editMode ? 'Editing' : 'Viewing'}} user {{user.name}}
+    Viewing user {{user.name}}
   </h2>
   <br>
   <br>
-
-  <div *ngIf="editMode; else userNice">
-    <form  novalidate [formGroup]="userForm" (ngSubmit)="saveUser(userForm)">
-      <label for="company-user-name">Name :</label>
-      <div class="input-group">
-        <input type="text" id="company-user-name" formControlName="name"
-               class="form-control" placeholder="Username"
-               aria-label="User's Username">
-      </div>
-      <company-validation-errors
-        [form]="userForm"
-        [fieldName]="'name'"
-        [validationMessages]="validation_messages">
-      </company-validation-errors>
-      <br>
-      <div class="buttons">
-        <button
-          [disabled]="!userForm.valid"
-          type="submit"
-          class="btn btn-lg btn-success"
-          role="button">Save</button>
-        &nbsp;
-        &nbsp;
-        <button class="btn btn-lg btn-danger" role="button" (click)="stopEdit()">Cancel</button>
-      </div>
-    </form>
+  <ul class="list-group">
+    <li  class="list-group-item">
+      <img [src]="user.avatarUrl" alt="nice avatar">
+      <span>{{user.name}}</span>
+    </li>
+  </ul>
+  <br><br>
+  <div class="buttons">
+    <button class="btn btn-lg btn-success" role="button" [routerLink]="'./edit'">Edit</button>
+    &nbsp;
+    &nbsp;
+    <div class="btn btn-lg btn-danger" role="button" routerLink="/users">Back</div>
   </div>
 
-  <ng-template #userNice>
-    <ul class="list-group">
-      <li  class="list-group-item">
-        <img [src]="user.avatarUrl" alt="nice avatar">
-        <span>{{user.name}}</span>
-      </li>
-    </ul>
-    <br><br>
-    <div class="buttons">
-      <button class="btn btn-lg btn-success" role="button" (click)="startEdit()">Edit</button>
-      &nbsp;
-      &nbsp;
-      <button class="btn btn-lg btn-danger" role="button" (click)="goBack()">Back</button>
-    </div>
-  </ng-template>
-
 </div>
-<company-loader *ngIf="!(user | async)"></company-loader>
+<company-loader *ngIf="!(user | async)" [what]="'user'"></company-loader>

@@ -16,6 +16,8 @@ import {CompanyValidationErrorsComponent} from "./components/company-validation-
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CompanyLoaderComponent } from './components/company-loader/company-loader.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {DiscardEditGuard} from "./guards/DiscardEditGuard";
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     CompanyValidationErrorsComponent,
     HomeComponent,
     CompanyLoaderComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -38,6 +41,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule
   ],
   providers: [
+    DiscardEditGuard,
     UsersService,
     {
       provide: HTTP_INTERCEPTORS,
