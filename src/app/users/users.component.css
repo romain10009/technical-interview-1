@@ -1,0 +1,28 @@
+.list-group img{
+  border-radius : 50%;
+  height: 50px;
+}
+
+.list-group p{
+  padding-left: 2rem;
+  font-weight: bolder;
+}
+
+li{
+  cursor: pointer;
+}
+
+.company-button-container{
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.first-btn{
+  align-self:flex-start;
+}
+
+.second-btn{
+  align-self:flex-end;
+}

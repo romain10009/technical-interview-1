@@ -1,0 +1,15 @@
+company-validation-errors {
+  .error-message:first-child{
+    display: initial !important;
+  }
+
+  .error-message{
+    display: none !important;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-left: 16px;
+    position: absolute;
+    margin-top: 0.1rem;
+    color: map_get($colors,'primary');
+  }
+}

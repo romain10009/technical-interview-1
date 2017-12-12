@@ -1,0 +1,9 @@
+img{
+  border-radius: 1rem;
+}
+
+.buttons{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-end;
+}

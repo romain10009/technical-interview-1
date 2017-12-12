@@ -1,0 +1,23 @@
+.company-loader{
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.company-loader p{
+  z-index:999;
+}
+
+.company-loader img{
+  align-self: center;
+  margin: -5rem!important;
+}

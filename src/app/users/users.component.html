@@ -1,3 +1,25 @@
-<p>
-  users works!
-</p>
+<div  class="company-button-container">
+  <div *ngIf="usersData | async; let data">
+    <button [@shrinkIn]="'in'" class="btn btn-lg first-btn btn-outline-primary"
+            role="button"
+            [routerLink]="['/users/', {link : data.previousPageUrl}]"
+            *ngIf="data.previousPageUrl">< Previous</button>
+    <button [@shrinkIn]="'in'" class="btn btn-lg second-btn btn-outline-primary"
+            role="button"
+            [routerLink]="['/users/',  {link : data.nextPageUrl}]"
+            *ngIf="data.nextPageUrl">Next ></button>
+  </div>
+</div>
+
+<div *ngIf="usersData | async; let data">
+  <br>
+  <br>
+  <ul [@liAnimation]="data.users.length" class="list-group">
+    <li [@flyInOut]="'in'" *ngFor="let user of data.users" class="list-group-item" [routerLink]="'/user/'+ user.id">
+      <img [src]="user.avatarUrl" alt="">
+      <span>{{user.name}}</span>
+    </li>
+  </ul>
+</div>
+<company-loader *ngIf="!(usersData | async)" [@shrinkIn]="'in'"></company-loader>
+
