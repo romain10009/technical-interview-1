@@ -14,12 +14,15 @@
 <div *ngIf="usersData | async; let data">
   <br>
   <br>
-  <ul [@liAnimation]="data.users.length" class="list-group">
-    <li [@flyInOut]="'in'" *ngFor="let user of data.users" class="list-group-item" [routerLink]="'/user/'+ user.id">
+  <ul [@liAnimation]="data.result.length" class="list-group">
+    <li [@flyInOut]="'in'" *ngFor="let user of data.result" class="list-group-item" [routerLink]="'/users/'+ user.id">
       <img [src]="user.avatarUrl" alt="">
       <span>{{user.name}}</span>
     </li>
   </ul>
+  <br><br>
+  <div class="alert alert-info alert-dismissible">This data comes from a HTTP_INTERCEPTOR that intercepts and handles the requests as if there was a real backend.</div>
+  <div class="alert alert-info alert-dismissible">Data is actually persisted by the interceptor.</div>
 </div>
 <company-loader *ngIf="!(usersData | async)" [@shrinkIn]="'in'" [what]="'all users'"></company-loader>
 

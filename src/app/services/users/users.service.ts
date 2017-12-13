@@ -16,10 +16,10 @@ export class UsersService {
   }
 
   public getUser(id : string): Observable<User>{
-    return this.http.get<User>(this.url + `users/${id}`);
+    return this.http.get<{result :User}>(this.url + `users/${id}`).map(res => res.result);
   }
 
-  public saveUser(user): Observable<User>{
-    return this.http.post<User>(this.url + `users/${user.id}`, user);
+  public saveUser(id,user): Observable<User>{
+    return this.http.post<User>(this.url + `users/${id}`, user);
   }
 }

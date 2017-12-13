@@ -3,8 +3,9 @@ import { Location } from '@angular/common';
 import {User} from "../../interfaces/interfaces";
 import {Observable} from "rxjs/Observable";
 import {UsersService} from "../../services/users/users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import _ from "lodash";
 
 @Component({
   selector: 'app-user-edit',
@@ -14,6 +15,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class UserEditComponent implements OnInit {
   user : Observable<User>;
   private userForm : FormGroup;
+  private id : string;
   validation_messages = {
     'name' : [
       {type : 'required', message : 'Name is required'},
@@ -22,11 +24,12 @@ export class UserEditComponent implements OnInit {
   };
 
 
-  constructor(private usersService : UsersService, private route : ActivatedRoute, private location : Location) { }
+  constructor(private usersService : UsersService, private router : Router, private route : ActivatedRoute, private location : Location) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.user = this.usersService.getUser(params.id);
+      this.id = params.id;
 
       //initialize form
       this.user.subscribe((user : User) => {
@@ -43,11 +46,11 @@ export class UserEditComponent implements OnInit {
 
   saveUser(f : FormGroup){
     this.user.subscribe(user => {
-      user.name = f.value.name;
-      f.reset();
-      this.usersService.saveUser(user).subscribe();
-
-      this.location.back();
+      this.usersService.saveUser(this.id, _.extend(user,f.value))
+        .subscribe(res => {
+          f.reset();
+          this.router.navigate(['users', this.id])
+        })
     });
   }
 }

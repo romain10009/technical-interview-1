@@ -16,11 +16,11 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
-    path: 'user/:id',
+    path: 'users/:id',
     component: UserComponent,
   },
   {
-    path: 'user/:id/edit',
+    path: 'users/:id/edit',
     component: UserEditComponent,
     canDeactivate: [DiscardEditGuard],
   },

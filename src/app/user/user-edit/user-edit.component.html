@@ -6,7 +6,7 @@
   <br>
 
     <form  novalidate [formGroup]="userForm" (ngSubmit)="saveUser(userForm)">
-      <label for="company-user-name">Name :</label>
+      <label for="company-user-name"><b>Name :</b></label>
       <div class="input-group">
         <input type="text" id="company-user-name" formControlName="name"
                class="form-control" placeholder="Username"
@@ -17,7 +17,8 @@
         [fieldName]="'name'"
         [validationMessages]="validation_messages">
       </company-validation-errors>
-      <br>
+      <div class="alert alert-info alert-dismissible">Try to delete all the stuff in this field, there is validation if less than 2 char. and empty!</div>
+      <div class="alert alert-info alert-dismissible">Try to Cancel after you edited the field a bit!!</div>
       <div class="buttons">
         <button
           [disabled]="!userForm.valid || !userForm.dirty"

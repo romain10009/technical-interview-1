@@ -45,15 +45,14 @@ export class MockBackendInterceptor implements HttpInterceptor {
     let split = req.url.split('/');
     let id = split[split.length -1];
     if(req.method === 'POST'){
-      let user = _.set(this.users,{id : id});
-      _.set(user,req.params);
-      res.body = user;
+      let user = _.find(this.users,{'id' : id});
+      _.merge(user,req.body);
     }else if(req.method === 'GET' && ( this.getURLParameter(req.urlWithParams,'start') || req.urlWithParams === 'https://sub.domain.com/api/v1/users')){
       let start = parseInt(this.getURLParameter(req.urlWithParams,'start') || '0');
       let count = parseInt(this.getURLParameter(req.urlWithParams,'count') || '3');
       let hasMore = (0 < (this.users.length - (start + count)));
       let nextStart = start + count;
-      res.body.users = this.users.slice(start,start+3);
+      res.body.result = this.users.slice(start,start+3);
       if(hasMore){
         res.body.nextPageUrl = `https://sub.domain.com/api/v1/users?start=${nextStart}&count=${count}`;
       }
@@ -61,7 +60,8 @@ export class MockBackendInterceptor implements HttpInterceptor {
         res.body.previousPageUrl = `https://sub.domain.com/api/v1/users?start=${start - count}&count=${count}`;
       }
     }else if(req.method === 'GET' && (req.url.match(/.+users\/\d+$/))) { //users/12345
-      res.body = _.find(this.users, {id: id});
+      let matchingUser = _.find(this.users, {id: id});
+      res.body.result = {name : matchingUser.name,avatarUrl : matchingUser.avatarUrl};
     }
 
     return Observable.of(new HttpResponse(res)).pipe(delay(req.method === 'GET' ? 800 : 0)); //end request here.
